@@ -23,8 +23,11 @@ This site was last <b>modified on: Thursday 17 April 2014, 18:30:59</b> !!!
 Changelog:
 
 db8 Social Media Share J3.x v2.5 [17-April-2014]
+
 Changed date format from PHP strftime to PHP date to display weekday & month in other languages
+
 Updated the module to Joomla 3.x and added <updateserver> for automatic future update notifications and one-click-update functionality
+
 
 
 Greetings, Peter Martin www.db8.nl
