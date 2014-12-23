@@ -22,6 +22,8 @@ This site was last <b>modified on: Thursday 17 April 2014, 18:30:59</b> !!!
 
 Changelog:
 
+Version v2.6 - Added filter="raw" to mod_db8sitelastmodified.xml to make it possible to add HTML code to "Text before/after Date" fields.
+
 Version v2.5 - Changed date format from PHP strftime to PHP date to display weekday & month in other languages. Updated the module to Joomla 3.x and added <updateserver> for automatic future update notifications and one-click-update functionality
 
 
