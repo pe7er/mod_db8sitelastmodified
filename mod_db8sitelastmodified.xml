@@ -2,12 +2,12 @@
 <extension type="module" version="3.2" client="site" method="upgrade">
     <name>MOD_DB8SITELASTMODIFIED</name>
     <author>Peter Martin</author>
-    <creationDate>April 2014</creationDate>
+    <creationDate>December 2014</creationDate>
     <copyright>Copyright (C) 2014 by Peter Martin. All rights reserved.</copyright>
     <license>GNU General Public License version 2</license>
     <authorEmail>joomla@db8.nl</authorEmail>
     <authorUrl>www.db8.nl</authorUrl>
-    <version>2.5</version>
+    <version>2.6</version>
     <description>MOD_DB8SITELASTMODIFIED_XML_DESCRIPTION</description>
 
     <files>
@@ -31,11 +31,14 @@
                     <option value="2">MOD_DB8SITELASTMODIFIED_CREATED</option>
                     <option value="1">MOD_DB8SITELASTMODIFIED_MODIFIED</option>
                 </field>
+                
                 <field  name="text_pre"
                         type="text"
+                        filter="raw"
                         default="Last Modified: "
                         label="MOD_DB8SITELASTMODIFIED_TEXT_PRE_LABEL"
                         description="MOD_DB8SITELASTMODIFIED_TEXT_PRE_DESCR" />
+                
                 <field  name="dateformat"
                         type="text"
                         default="l d F Y, H:i:s"
@@ -44,6 +47,7 @@
 
                 <field  name="text_post"
                         type="text"
+                        filter="raw"
                         default="."
                         label="MOD_DB8SITELASTMODIFIED_TEXT_POST_LABEL"
                         description="MOD_DB8SITELASTMODIFIED_TEXT_POST_DESCR" />
