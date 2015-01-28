@@ -26,9 +26,8 @@ Version v2.6 - Added filter="raw" to mod_db8sitelastmodified.xml to make it poss
 
 Version v2.5 - Changed date format from PHP strftime to PHP date to display weekday & month in other languages. Updated the module to Joomla 3.x and added <updateserver> for automatic future update notifications and one-click-update functionality
 
+Thanks to:
 
+Chris Gelauff - for Translation of fr-FR language pack.
 
-Greetings, Peter Martin www.db8.nl
-
-https://github.com/pe7er
-
+Markus Wortmann - for Translation of de-DE language pack.
