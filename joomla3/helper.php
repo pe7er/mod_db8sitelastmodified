@@ -26,11 +26,11 @@ abstract class modDb8SiteLastModifiedHelper
     public static function getModifiedDate(&$params)
     {
         // Get user + time zone configuration
-        $config = JFactory::getConfig();
-        $user   = JFactory::getUser();
+        $config = Factory::getConfig();
+        $user   = Factory::getUser();
  
         // get max created & modified dates from content table
-        $db = JFactory::getDbo();
+        $db = Factory::getDbo();
         $query = $db->getQuery(true);
         $query->select('MAX( created ) AS created, MAX( modified ) AS modified');
         $query->from('#__content');
@@ -48,7 +48,7 @@ abstract class modDb8SiteLastModifiedHelper
         }
 
         //take timezone for user into account
-        $date = JFactory::getDate($displaydate, 'UTC');
+        $date = Factory::getDate($displaydate, 'UTC');
         $date->setTimezone(new DateTimeZone($user->getParam('timezone', $config->get('offset'))));
 
 	$formatteddate = $params->get('text_pre').$date->format($params->get('dateformat', 'l d-m-Y, H:i:s'), true, true).$params->get('text_post');
