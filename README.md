@@ -3,6 +3,11 @@
 Module to display the last modification date, based on the article (create/modified) dates in your site. 
 Note that it does not display any other changes, e.g. in Category or Modules.
 
+## Versions
+- **Joomla 4** version: mod_db8sitelastmodified-**j4**-v3.0.0.zip
+- **Joomla 3** version: mod_db8sitelastmodified-**j3**-v3.0.0.zip
+- Joomla 2.5, 1.5 and 1.0 versions are no longer available
+
 ## Usage
 
 - Text before Date: Put here any text that should be displayed before the date.
