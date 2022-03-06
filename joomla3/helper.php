@@ -6,51 +6,58 @@
  * @license     GNU General Public License version 2 or later.
  */
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\Registry;
+
 defined('_JEXEC') or die;
 
 /**
- * Helper for mod_db8sitelastmodified
+ * Helper for module db8 Site Last Modified
+ *
+ * @since  3.0.0
  */
-
 abstract class modDb8SiteLastModifiedHelper
 {
     /**
-    * Retrieves a formatted date
-    *
-    * @param JParameter Module parameters
-    * @return a string with text + formatted a local time/date according to locale settings + text
-    */
+     * Get a formatted date of most recently created or modified article
+     *
+     * @param Registry  &$params object holding the models parameters
+     *
+     * @return  string
+     * @throws  Exception
+     * @since   3.0.0
+     */
     public static function getModifiedDate(&$params)
     {
-        // Get user + time zone configuration
-        $config = Factory::getConfig();
-        $user   = Factory::getUser();
- 
-        // get max created & modified dates from content table
-        $db = Factory::getDbo();
-        $query = $db->getQuery(true);
-        $query->select('MAX( created ) AS created, MAX( modified ) AS modified');
-        $query->from('#__content');
+        $app = Factory::getApplication();
+        $user = $app->getIdentity();
+        $timezone = $user->getTimezone();
+        $dateFormat = $params->get('dateformat', 'l d-m-Y, H:i:s');
+
+        // Get max created & modified dates from content table
+        $db = Factory::getContainer()->get('DatabaseDriver');
+        $query = $db->getQuery(true)
+            ->select('MAX(' . $db->quoteName('created') . ') as created')
+            ->select('MAX(' . $db->quoteName('modified') . ') as modified')
+            ->from($db->quoteName('#__content'));
         $db->setQuery($query);
+
         $result = $db->loadObject();
 
         // determine what will be used for create/modified date
-        $datedisplay = $params->get('datedisplay');
-        if ( $datedisplay == 1 ){
-            $displaydate = $result->modified;
-        }elseif( $datedisplay == 2 ){
-            $displaydate = $result->created;
-        }else{
-            $displaydate = max($result->modified, $result->created);
+        $dateDisplay = $params->get('datedisplay');
+        if ($dateDisplay === 1) {
+            $displayDate = $result->modified;
+        } elseif ($dateDisplay === 2) {
+            $displayDate = $result->created;
+        } else {
+            $displayDate = max($result->modified, $result->created);
         }
 
-        //take timezone for user into account
-        $date = Factory::getDate($displaydate, 'UTC');
-        $date->setTimezone(new DateTimeZone($user->getParam('timezone', $config->get('offset'))));
+        $date = Factory::getDate(Factory::getDate($displayDate, 'UTC'))
+            ->setTimezone($timezone)
+            ->format($dateFormat);
 
-	$formatteddate = $params->get('text_pre').$date->format($params->get('dateformat', 'l d-m-Y, H:i:s'), true, true).$params->get('text_post');
-
-        return $formatteddate;
-
+        return $params->get('text_pre') . $date . $params->get('text_post');
     }
 }
