@@ -40,8 +40,8 @@ abstract class DateHelper
         // Get max created & modified dates from content table
         $db = Factory::getContainer()->get('DatabaseDriver');
         $query = $db->getQuery(true)
-            ->select('MAX( ' . $db->quoteName('created', 'created') . ' )')
-            ->select('MAX( ' . $db->quoteName('modified', 'modified') . ' )')
+            ->select('MAX(' . $db->quoteName('created') . ') as created')
+            ->select('MAX(' . $db->quoteName('modified') . ') as modified')
             ->from($db->quoteName('#__content'));
         $db->setQuery($query);
 
@@ -49,9 +49,9 @@ abstract class DateHelper
 
         // determine what will be used for create/modified date
         $dateDisplay = $params->get('datedisplay');
-        if ($dateDisplay == 1) {
+        if ($dateDisplay === 1) {
             $displayDate = $result->modified;
-        } elseif ($dateDisplay == 2) {
+        } elseif ($dateDisplay === 2) {
             $displayDate = $result->created;
         } else {
             $displayDate = max($result->modified, $result->created);

@@ -7,10 +7,10 @@
     <license>GNU General Public License version 2</license>
     <authorEmail>joomla@db8.nl</authorEmail>
     <authorUrl>https://db8.nl</authorUrl>
-    <version>3.0</version>
+    <version>3.0.0</version>
     <description>MOD_DB8SITELASTMODIFIED_XML_DESCRIPTION</description>
 
-    <namespace>Db8\Module\Db8SiteLastModified</namespace>
+    <namespace path="src">Db8\Module\Db8SiteLastModified</namespace>
 
     <files>
         <filename module="mod_db8sitelastmodified">mod_db8sitelastmodified.php</filename>
@@ -30,8 +30,8 @@
                         label="MOD_DB8SITELASTMODIFIED_SHOW_DATE_DISPLAY_LABEL"
                         description="MOD_DB8SITELASTMODIFIED_SHOW_DATE_DISPLAY_DESC">
                     <option value="0">MOD_DB8SITELASTMODIFIED_BOTH</option>
-                    <option value="2">MOD_DB8SITELASTMODIFIED_CREATED</option>
                     <option value="1">MOD_DB8SITELASTMODIFIED_MODIFIED</option>
+                    <option value="2">MOD_DB8SITELASTMODIFIED_CREATED</option>
                 </field>
 
                 <field
@@ -108,9 +108,7 @@
     </config>
 
     <updateservers>
-        <server type="extension" name="mod_db8sitelastmodified">
-            https://raw.githubusercontent.com/pe7er/mod_db8sitelastmodified/master/update.xml
-        </server>
+        <server type="extension" name="mod_db8sitelastmodified">https://raw.githubusercontent.com/pe7er/mod_db8sitelastmodified/master/update.xml</server>
     </updateservers>
 
 </extension>
