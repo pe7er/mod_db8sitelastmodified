@@ -27,7 +27,15 @@ This site was last <b>modified on: Thursday 17 April 2014, 18:30:59</b> !!!
 
 ## Changelog
 
+7-Mar-2022 : v4.0.1 (Joomla 4 version)
+- Increased the version number to force Joomla 4 websites to use the new Joomla 4 version
+- Replaced old J3 helper.php with empty placeholder (new J4 helper is now located in /src/Helper/DateHelper.php)
+
+7-Mar-2022 : v3.0.1 (Joomla 3 version)
+- Fixed issue with missing files in .zip package 
+
 6-Mar-2022 : v3.0.0
+- Refactored Joomla 3 version to namespacing (used since Joomla 3.8)
 - Added Joomla 4 version
 
 28-Jan-2015 : v2.6.0

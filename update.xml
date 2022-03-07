@@ -2,17 +2,17 @@
 <updates>
     <update>
 
-        <name>mod_db8sitelastmodified 3.0.0</name>
+        <name>mod_db8sitelastmodified 3.0.1</name>
         <description>Module to display the last site modification date, based on the article (create/modified) dates in your site</description>
         <element>mod_db8sitelastmodified</element>
         <type>module</type>
         <client>site</client>
-        <version>3.0.0</version>
+        <version>3.0.1</version>
         <infourl title="mod_db8sitelastmodified">https://github.com/pe7er/mod_db8sitelastmodified</infourl>
         <downloads>
-            <downloadurl type="full" format="zip">https://github.com/pe7er/mod_db8sitelastmodified/raw/master/downloads/mod_db8sitelastmodified-j3-v3.0.0.zip</downloadurl>
+            <downloadurl type="full" format="zip">https://github.com/pe7er/mod_db8sitelastmodified/raw/master/downloads/mod_db8sitelastmodified-j3-v3.0.1.zip</downloadurl>
         </downloads>
-        <sha512>b6cae689ebf324a39afd9cd68898014e31e0a948178073859cfba3f1289360623762f1af5d6653654ae0a559a73184ec1e0dd9ed712f9326ce9729651f74df0b</sha512>
+        <sha512>1853fb3a04d15241eb8bea4b5c009ac62c1156de831cf92d4ea2e9a2a6160c930f9fb46d3de43dd331398c8b412d78c63c5d30e392659f88a0c74e4fd27a4476</sha512>
         <tags>
             <tag>stable</tag>
         </tags>
@@ -23,17 +23,17 @@
     </update>
 
     <update>
-        <name>mod_db8sitelastmodified 3.0.0</name>
+        <name>mod_db8sitelastmodified 4.0.1</name>
         <description>Module to display the last site modification date, based on the article (create/modified) dates in your site</description>
         <element>mod_db8sitelastmodified</element>
         <type>module</type>
         <client>site</client>
-        <version>3.0.0</version>
+        <version>4.0.1</version>
         <infourl title="mod_db8sitelastmodified">https://github.com/pe7er/mod_db8sitelastmodified</infourl>
         <downloads>
-            <downloadurl type="full" format="zip">https://github.com/pe7er/mod_db8sitelastmodified/raw/master/downloads/mod_db8sitelastmodified-j4-v3.0.0.zip</downloadurl>
+            <downloadurl type="full" format="zip">https://github.com/pe7er/mod_db8sitelastmodified/raw/master/downloads/mod_db8sitelastmodified-j4-v4.0.1.zip</downloadurl>
         </downloads>
-        <sha512>d16c58ad4b167678fc23c5df7f1d63167b2e3a9730bedf588d0e31e7b4c16e7302095e003b55d4c5d40152ddeb31cb6629919b89034f9c2da5b2a39877ced37e</sha512>
+        <sha512>504892861f47b780efb32cb8a38d2ca369e0321880e2f92320325409b5e6d6abe853a3ee7b755e39ab6d4fe34bf3f49a593308033eb5bedfc173802196a855da</sha512>
         <tags>
             <tag>stable</tag>
         </tags>

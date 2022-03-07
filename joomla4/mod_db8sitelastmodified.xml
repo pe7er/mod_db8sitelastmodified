@@ -7,13 +7,14 @@
     <license>GNU General Public License version 2</license>
     <authorEmail>joomla@db8.nl</authorEmail>
     <authorUrl>https://db8.nl</authorUrl>
-    <version>3.0.0</version>
+    <version>4.0.1</version>
     <description>MOD_DB8SITELASTMODIFIED_XML_DESCRIPTION</description>
 
     <namespace path="src">Db8\Module\Db8SiteLastModified</namespace>
 
     <files>
         <filename module="mod_db8sitelastmodified">mod_db8sitelastmodified.php</filename>
+        <filename>helper.php</filename>
         <folder>language</folder>
         <folder>src</folder>
         <folder>tmpl</folder>
