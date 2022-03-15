@@ -29,13 +29,12 @@ abstract class modDb8SiteLastModifiedHelper
      */
     public static function getModifiedDate(&$params)
     {
-        $app = Factory::getApplication();
-        $user = $app->getIdentity();
+        $user = Factory::getUser();
         $timezone = $user->getTimezone();
         $dateFormat = $params->get('dateformat', 'l d-m-Y, H:i:s');
 
         // Get max created & modified dates from content table
-        $db = Factory::getContainer()->get('DatabaseDriver');
+        $db = Factory::getDbo();
         $query = $db->getQuery(true)
             ->select('MAX(' . $db->quoteName('created') . ') as created')
             ->select('MAX(' . $db->quoteName('modified') . ') as modified')
@@ -46,9 +45,9 @@ abstract class modDb8SiteLastModifiedHelper
 
         // determine what will be used for create/modified date
         $dateDisplay = $params->get('datedisplay');
-        if ($dateDisplay === 1) {
+        if ($dateDisplay == 2) {
             $displayDate = $result->modified;
-        } elseif ($dateDisplay === 2) {
+        } elseif ($dateDisplay == 1) {
             $displayDate = $result->created;
         } else {
             $displayDate = max($result->modified, $result->created);

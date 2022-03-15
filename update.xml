@@ -2,17 +2,17 @@
 <updates>
     <update>
 
-        <name>mod_db8sitelastmodified 3.0.1</name>
+        <name>mod_db8sitelastmodified 3.0.2</name>
         <description>Module to display the last site modification date, based on the article (create/modified) dates in your site</description>
         <element>mod_db8sitelastmodified</element>
         <type>module</type>
         <client>site</client>
-        <version>3.0.1</version>
+        <version>3.0.2</version>
         <infourl title="mod_db8sitelastmodified">https://github.com/pe7er/mod_db8sitelastmodified</infourl>
         <downloads>
-            <downloadurl type="full" format="zip">https://github.com/pe7er/mod_db8sitelastmodified/raw/master/downloads/mod_db8sitelastmodified-j3-v3.0.1.zip</downloadurl>
+            <downloadurl type="full" format="zip">https://github.com/pe7er/mod_db8sitelastmodified/raw/master/downloads/mod_db8sitelastmodified-j3-v3.0.2.zip</downloadurl>
         </downloads>
-        <sha512>1853fb3a04d15241eb8bea4b5c009ac62c1156de831cf92d4ea2e9a2a6160c930f9fb46d3de43dd331398c8b412d78c63c5d30e392659f88a0c74e4fd27a4476</sha512>
+        <sha512>2288e5eff8303a5668c849c80d1b310fd7273fc01232269af52ba90d4e4f07a27444d3ea64a4e2bf4b7bcc92b92e13560bbb237eb9d73c4c4d6f016e0a20f8b1</sha512>
         <tags>
             <tag>stable</tag>
         </tags>
