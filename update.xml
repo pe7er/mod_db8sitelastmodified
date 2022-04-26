@@ -19,7 +19,7 @@
         <maintainer>Peter Martin</maintainer>
         <maintainerurl>https://db8.nl</maintainerurl>
         <php_minimum>7.0.0</php_minimum>
-        <targetplatform name="joomla" version="3.([89]|10)"/>
+        <targetplatform name="joomla" version="((3\.(10|9))|(4\.(0|1)))"/>
     </update>
 
     <update>
@@ -40,7 +40,7 @@
         <maintainer>Peter Martin</maintainer>
         <maintainerurl>https://db8.nl</maintainerurl>
         <php_minimum>7.0.0</php_minimum>
-        <targetplatform name="joomla" version="4.([01])"/>
+        <targetplatform name="joomla" version="4\.(0|1)"/>
     </update>
 
 </updates>
