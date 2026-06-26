@@ -2,12 +2,12 @@
 <extension type="module" version="4.0" client="site" method="upgrade">
     <name>mod_db8sitelastmodified</name>
     <author>Peter Martin</author>
-    <creationDate>March 2022</creationDate>
-    <copyright>Copyright (C) 2014-2022 by Peter Martin. All rights reserved.</copyright>
+    <creationDate>June 2026</creationDate>
+    <copyright>Copyright (C) 2014-2026 by Peter Martin. All rights reserved.</copyright>
     <license>GNU General Public License version 2</license>
     <authorEmail>joomla@db8.nl</authorEmail>
     <authorUrl>https://db8.nl</authorUrl>
-    <version>4.0.1</version>
+    <version>4.1.0</version>
     <description>MOD_DB8SITELASTMODIFIED_XML_DESCRIPTION</description>
 
     <namespace path="src">Db8\Module\Db8SiteLastModified</namespace>
@@ -109,7 +109,7 @@
     </config>
 
     <updateservers>
-        <server type="extension" name="mod_db8sitelastmodified">https://raw.githubusercontent.com/pe7er/mod_db8sitelastmodified/master/update.xml</server>
+        <server type="extension" name="mod_db8sitelastmodified">https://raw.githubusercontent.com/pe7er/mod_db8sitelastmodified/main/update.xml</server>
     </updateservers>
 
 </extension>

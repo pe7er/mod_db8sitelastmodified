@@ -1,0 +1,89 @@
+name: Create Release
+
+permissions:
+  contents: write
+  issues: write
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Load variables from .env
+        run: |
+          while IFS='=' read -r key value; do
+            case "$key" in ''|\#*) continue ;; esac
+            echo "$key=$value" >> $GITHUB_ENV
+          done < .env
+
+      - name: Determine source folder for this version
+        run: |
+          MAJOR="${VERSION%%.*}"
+          case "$MAJOR" in
+            4) SOURCE_DIR="joomla4" ;;
+            5) SOURCE_DIR="src/modules/mod_db8sitelastmodified" ;;
+            *) echo "Unsupported major version: $MAJOR"; exit 1 ;;
+          esac
+          echo "SOURCE_DIR=$SOURCE_DIR" >> $GITHUB_ENV
+          echo "Building $VERSION from $SOURCE_DIR"
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Check whether this version is already released
+        run: |
+          RELEASED=$(python .github/scripts/current_line_version.py "$VERSION")
+          echo "debug: published version for this line = '$RELEASED', .env version = '$VERSION'"
+          if [ "$VERSION" == "$RELEASED" ]; then
+            echo "Version $VERSION is already published; nothing to do."
+            echo "version_changed=false" >> $GITHUB_ENV
+          else
+            echo "version_changed=true" >> $GITHUB_ENV
+          fi
+
+      - name: Update module's XML manifest
+        if: env.version_changed == 'true'
+        run: python .github/scripts/update_manifest.py "$SOURCE_DIR/$MANIFEST" "$VERSION"
+
+      - name: Zip the module folder
+        if: env.version_changed == 'true'
+        run: |
+          cd "$SOURCE_DIR"
+          zip -r "$GITHUB_WORKSPACE/$EXTENSION-$VERSION.zip" .
+
+      - name: Compute SHA512 checksum
+        if: env.version_changed == 'true'
+        run: |
+          sha512sum "$EXTENSION-$VERSION.zip" > "$EXTENSION-$VERSION.zip.sha512"
+          SHA512=$(cut -d' ' -f1 "$EXTENSION-$VERSION.zip.sha512")
+          echo "SHA512=$SHA512" >> $GITHUB_ENV
+
+      - name: Create Release
+        if: env.version_changed == 'true'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ env.VERSION }}
+          name: Release ${{ env.VERSION }}
+          draft: false
+          prerelease: false
+          files: ${{ env.EXTENSION }}-${{ env.VERSION }}.zip
+
+      - name: Update update.xml and commit changes
+        if: env.version_changed == 'true'
+        run: |
+          DOWNLOAD_URL="https://github.com/pe7er/$EXTENSION/releases/download/$VERSION/$EXTENSION-$VERSION.zip"
+          python .github/scripts/update_update_xml.py "$VERSION" "$DOWNLOAD_URL" "$SHA512"
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add update.xml "$SOURCE_DIR/$MANIFEST"
+          git commit -m "Release $VERSION"
+          git push
