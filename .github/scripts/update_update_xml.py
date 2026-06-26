@@ -13,7 +13,8 @@ LINES = {
     '5': {
         'description': 'Module to display the last site modification date, based on the article (create/modified/published) dates in your site',
         'php_minimum': '8.1.0',
-        'targetplatform': r'^(4|5|6)\.',
+        # Joomla 5.0-5.4 and all of the Joomla 6 series (not Joomla 4).
+        'targetplatform': r'(5\.[0-4]|6\.[0-9]+)',
     },
 }
 
