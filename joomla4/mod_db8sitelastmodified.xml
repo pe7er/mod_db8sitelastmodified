@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <extension type="module" version="4.0" client="site" method="upgrade">
     <name>mod_db8sitelastmodified</name>
     <author>Peter Martin</author>
-    <creationDate>June 2026</creationDate>
+    <creationDate>2026-06-26</creationDate>
     <copyright>Copyright (C) 2014-2026 by Peter Martin. All rights reserved.</copyright>
     <license>GNU General Public License version 2</license>
     <authorEmail>joomla@db8.nl</authorEmail>
@@ -24,84 +24,33 @@
         <fields name="params">
             <fieldset name="basic">
 
-                <field
-                        name="datedisplay"
-                        type="list"
-                        default="0"
-                        label="MOD_DB8SITELASTMODIFIED_SHOW_DATE_DISPLAY_LABEL"
-                        description="MOD_DB8SITELASTMODIFIED_SHOW_DATE_DISPLAY_DESC">
+                <field name="datedisplay" type="list" default="0" label="MOD_DB8SITELASTMODIFIED_SHOW_DATE_DISPLAY_LABEL" description="MOD_DB8SITELASTMODIFIED_SHOW_DATE_DISPLAY_DESC">
                     <option value="0">MOD_DB8SITELASTMODIFIED_BOTH</option>
                     <option value="1">MOD_DB8SITELASTMODIFIED_MODIFIED</option>
                     <option value="2">MOD_DB8SITELASTMODIFIED_CREATED</option>
                 </field>
 
-                <field
-                        name="text_pre"
-                        type="text"
-                        filter="raw"
-                        default="Last Modified: "
-                        label="MOD_DB8SITELASTMODIFIED_TEXT_PRE_LABEL"
-                        description="MOD_DB8SITELASTMODIFIED_TEXT_PRE_DESCR"/>
+                <field name="text_pre" type="text" filter="raw" default="Last Modified: " label="MOD_DB8SITELASTMODIFIED_TEXT_PRE_LABEL" description="MOD_DB8SITELASTMODIFIED_TEXT_PRE_DESCR" />
 
-                <field
-                        name="dateformat"
-                        type="text"
-                        default="l d F Y, H:i:s"
-                        label="MOD_DB8SITELASTMODIFIED_DATETIME_FORMAT_LABEL"
-                        description="MOD_DB8SITELASTMODIFIED_DATETIMEFORMAT_DESCR"/>
+                <field name="dateformat" type="text" default="l d F Y, H:i:s" label="MOD_DB8SITELASTMODIFIED_DATETIME_FORMAT_LABEL" description="MOD_DB8SITELASTMODIFIED_DATETIMEFORMAT_DESCR" />
 
-                <field
-                        name="text_post"
-                        type="text"
-                        filter="raw"
-                        default="."
-                        label="MOD_DB8SITELASTMODIFIED_TEXT_POST_LABEL"
-                        description="MOD_DB8SITELASTMODIFIED_TEXT_POST_DESCR"/>
+                <field name="text_post" type="text" filter="raw" default="." label="MOD_DB8SITELASTMODIFIED_TEXT_POST_LABEL" description="MOD_DB8SITELASTMODIFIED_TEXT_POST_DESCR" />
             </fieldset>
 
             <fieldset name="advanced">
-                <field
-                        name="layout"
-                        type="modulelayout"
-                        label="JFIELD_ALT_LAYOUT_LABEL"
-                        class="form-select"
-                        validate="moduleLayout"
-                />
+                <field name="layout" type="modulelayout" label="JFIELD_ALT_LAYOUT_LABEL" class="form-select" validate="moduleLayout" />
 
-                <field
-                        name="moduleclass_sfx"
-                        type="textarea"
-                        label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
-                        rows="3"
-                        validate="CssIdentifier"
-                />
+                <field name="moduleclass_sfx" type="textarea" label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL" rows="3" validate="CssIdentifier" />
 
-                <field
-                        name="cache"
-                        type="list"
-                        label="COM_MODULES_FIELD_CACHING_LABEL"
-                        default="1"
-                        filter="integer"
-                        validate="options"
-                >
+                <field name="cache" type="list" label="COM_MODULES_FIELD_CACHING_LABEL" default="1" filter="integer" validate="options">
                     <option value="1">JGLOBAL_USE_GLOBAL</option>
                     <option value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
                 </field>
 
-                <field
-                        name="cache_time"
-                        type="number"
-                        label="COM_MODULES_FIELD_CACHE_TIME_LABEL"
-                        default="900"
-                        filter="integer"
-                />
+                <field name="cache_time" type="number" label="COM_MODULES_FIELD_CACHE_TIME_LABEL" default="900" filter="integer" />
 
-                <field
-                        name="cachemode"
-                        type="hidden"
-                        default="static"
-                >
-                    <option value="static"></option>
+                <field name="cachemode" type="hidden" default="static">
+                    <option value="static" />
                 </field>
             </fieldset>
 
