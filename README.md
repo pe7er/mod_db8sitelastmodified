@@ -29,25 +29,7 @@ This site was last <b>modified on: Thursday 17 April 2014, 18:30:59</b> !!!
 
 ## Changelog
 
-15-Mar-2022 : v3.0.2 (Joomla 3 version)
-- Fixed some errors with J4 code in the J3 Module
-
-7-Mar-2022 : v4.0.1 (Joomla 4 version)
-- Increased the version number to force Joomla 4 websites to use the new Joomla 4 version
-- Replaced old J3 helper.php with empty placeholder (new J4 helper is now located in /src/Helper/DateHelper.php)
-
-7-Mar-2022 : v3.0.1 (Joomla 3 version)
-- Fixed issue with missing files in .zip package 
-
-6-Mar-2022 : v3.0.0
-- Refactored Joomla 3 version to namespacing (used since Joomla 3.8)
-- Added Joomla 4 version
-
-28-Jan-2015 : v2.6.0
-- Added filter="raw" to mod_db8sitelastmodified.xml to make it possible to add HTML code to "Text before/after Date" fields.
-
-17-Apr-2014 : v2.5.0
-- Changed date format from PHP strftime to PHP date to display weekday & month in other languages. Updated the module to Joomla 3.x and added <updateserver> for automatic future update notifications and one-click-update functionality
+See [CHANGELOG.md](CHANGELOG.md) for the full version history.
 
 ## Thanks to
 * Chris Gelauff - for Translation of fr-FR language pack.

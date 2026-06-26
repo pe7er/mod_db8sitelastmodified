@@ -9,7 +9,7 @@ Historical entries (4.0.1 and earlier) are sourced from the
 [Joomla Extensions Directory listing](https://extensions.joomla.org/extension/db8-site-last-modified/).
 
 ## [5.0.0] - 2026-06-26
-git 
+
 ### Added
 - Joomla 5 and 6 compatible build under `src/modules/mod_db8sitelastmodified`, rebuilt on the modern service-provider + dispatcher architecture.
 - "Published" option for the "Use Date from" setting (`publish_up`), alongside Created and Modified. Only articles whose publish date is now or in the past — and that have not expired through `publish_down` — are considered, and that date is also factored into the "Most Recent" calculation.
