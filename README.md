@@ -1,10 +1,12 @@
 # db8 Site Last Modified
 
 Module to display the last modification date, based on the article (create/modified) dates in your site. 
+In the Joomla 5 + 6 version you can also select the published_up date.
 Note that it does not display any other changes, e.g. in Category or Modules.
 
 ## Versions
-- **Joomla 4** version: mod_db8sitelastmodified-**j4**-v4.0.1.zip
+- **Joomla 5 + 6** version: mod_db8sitelastmodified-5.0.0.zip
+- **Joomla 4** version: mod_db8sitelastmodified-4.1.0.zip
 - **Joomla 3** version: mod_db8sitelastmodified-**j3**-v3.0.1.zip
 - Joomla 2.5, 1.5 and 1.0 versions are no longer available
 
