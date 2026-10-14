@@ -8,6 +8,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 Historical entries (4.0.1 and earlier) are sourced from the
 [Joomla Extensions Directory listing](https://extensions.joomla.org/extension/db8-site-last-modified/).
 
+## [5.1.0] - unreleased
+
+### Changed
+- Updates now come from extensions.db8.nl (`https://extensions.db8.nl/updates/db8sitelastmodified`) instead of the `update.xml` in this repository.
+
+### Fixed
+- The time was always shown in UTC: the date was formatted without the user's or site's timezone. It now uses the timezone of the visitor's account, or the site's default timezone.
+
 ## [5.0.0] - 2026-06-26
 
 ### Added

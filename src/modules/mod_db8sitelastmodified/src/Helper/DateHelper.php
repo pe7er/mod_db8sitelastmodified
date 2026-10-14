@@ -89,9 +89,10 @@ class DateHelper
             return '';
         }
 
-        $date = Factory::getDate(Factory::getDate($displayDate, 'UTC'))
+        // format() switches back to UTC unless $local is true.
+        $date = Factory::getDate($displayDate, 'UTC')
             ->setTimezone($timezone)
-            ->format($dateFormat);
+            ->format($dateFormat, true);
 
         return $params->get('text_pre') . $date . $params->get('text_post');
     }
