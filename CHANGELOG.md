@@ -14,6 +14,7 @@ Historical entries (4.0.1 and earlier) are sourced from the
 - Updates now come from extensions.db8.nl (`https://extensions.db8.nl/updates/db8sitelastmodified`) instead of the `update.xml` in this repository.
 
 ### Fixed
+- The *Article Created Date* and *Article Modified Date* options were labelled the wrong way round in English, French and Dutch: the option labelled "created" showed the modified date and vice versa. The labels now match the date they show.
 - The time was always shown in UTC: the date was formatted without the user's or site's timezone. It now uses the timezone of the visitor's account, or the site's default timezone.
 
 ## [5.0.0] - 2026-06-26
