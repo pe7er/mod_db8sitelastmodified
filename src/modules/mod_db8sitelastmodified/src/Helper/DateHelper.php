@@ -1,10 +1,13 @@
 <?php
 
 /**
- * @package     mod_db8sitelastmodified
- * @author      Peter Martin, https://db8.nl
- * @copyright   Copyright (C) 2014-2026 Peter Martin. All rights reserved.
- * @license     GNU General Public License version 2 or later.
+ * @package     Joomla.Site
+ * @subpackage  mod_db8sitelastmodified
+ *
+ * @author      Peter Martin <joomla@db8.nl>
+ * @copyright   (C) 2014 - 2026 Peter Martin
+ * @link        https://extensions.db8.nl
+ * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 namespace Db8\Module\Db8SiteLastModified\Site\Helper;

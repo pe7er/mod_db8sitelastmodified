@@ -12,7 +12,7 @@ cd "$REPO"
 
 # shellcheck disable=SC1091
 source .env
-SOURCE_DIR="src/modules/$EXTENSION"
+# SOURCE_DIR comes from .env.
 ZIP="$REPO/dist/$EXTENSION-$VERSION.zip"
 
 mkdir -p dist

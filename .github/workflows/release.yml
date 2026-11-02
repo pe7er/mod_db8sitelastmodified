@@ -23,17 +23,6 @@ jobs:
             echo "$key=$value" >> $GITHUB_ENV
           done < .env
 
-      - name: Determine source folder for this version
-        run: |
-          MAJOR="${VERSION%%.*}"
-          case "$MAJOR" in
-            4) SOURCE_DIR="joomla4" ;;
-            5) SOURCE_DIR="src/modules/mod_db8sitelastmodified" ;;
-            *) echo "Unsupported major version: $MAJOR"; exit 1 ;;
-          esac
-          echo "SOURCE_DIR=$SOURCE_DIR" >> $GITHUB_ENV
-          echo "Building $VERSION from $SOURCE_DIR"
-
       - name: Set up Python
         uses: actions/setup-python@v5
         with:

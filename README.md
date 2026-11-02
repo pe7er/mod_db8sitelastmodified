@@ -1,36 +1,46 @@
-# db8 Site Last Modified
+# mod_db8sitelastmodified - db8 Site Last Modified
 
-Module to display the last modification date, based on the article (create/modified) dates in your site. 
-In the Joomla 5 + 6 version you can also select the published_up date.
-Note that it does not display any other changes, e.g. in Category or Modules.
+Joomla 5 and Joomla 6 site module that shows when your site was last changed, based on the dates of your articles. It does not look at other changes, such as categories or modules.
 
-## Versions
-- **Joomla 5 + 6** version: mod_db8sitelastmodified-5.0.0.zip
-- **Joomla 4** version: mod_db8sitelastmodified-4.1.0.zip
-- **Joomla 3** version: mod_db8sitelastmodified-**j3**-v3.0.1.zip
-- Joomla 2.5, 1.5 and 1.0 versions are no longer available
+## What it does
+- Shows the most recent date of your published articles: their modified, created or publish-up date, or whichever is the most recent.
+- Formats the date with a PHP date format, in the timezone of the visitor's account or the site's default timezone.
+- Puts your own text before and after the date. HTML is allowed, so `<b>` and `</b>` make the text bold.
 
-## Usage
+## Requirements
+- Joomla 5 or 6
+- PHP 8.1 or later
 
-- Text before Date: Put here any text that should be displayed before the date.
-- Date/time format: Use the PHP date format to format the date/time.
-- Text after Date: Put here any text that should be displayed after the date.
-- Note: HTML tags are allowed, so you can use <b> and </b> around your text to get bold characters.
+## Installation
+Install like any other Joomla module, then create a *db8 Site Last Modified* module in Content > Site Modules and assign it to a position. Updates come from https://extensions.db8.nl.
 
-## Example
+## Configuration
+- **Use Date from**: modified, created, publish-up, or the most recent of these.
+- **Text before date**: text shown before the date.
+- **Date/Time format**: a PHP date format, such as `l d F Y, H:i:s`.
+- **Text after date**: text shown after the date.
 
-- Text before Date: This site was last &lt;b&gt; modified on:
-- Date/time format: l d F Y, H:i:s
-- Text after Date: &lt;/b&gt;!!!
+Example: *Text before date* `This site was last <b>modified on:`, *Date/Time format* `l d F Y, H:i:s` and *Text after date* `</b>!!!` display:
 
-will display:
+This site was last <b>modified on: Thursday 17 April 2014, 18:30:59</b>!!!
 
-This site was last <b>modified on: Thursday 17 April 2014, 18:30:59</b> !!!
+## Available Languages
+- Dutch (nl-NL)
+- English (en-GB)
+- French (fr-FR)
+- German (de-DE)
+
+## Older versions
+The Joomla 3 and Joomla 4 versions are in `downloads/` and on the GitHub releases page; Joomla 2.5, 1.5 and 1.0 versions are no longer available.
+
+## Build
+- `scripts/build.sh` builds `dist/mod_db8sitelastmodified-<version>.zip` with a `.sha512` sidecar
+- `scripts/install.sh /path/to/joomla` builds and installs it into a Joomla site
+- `scripts/sync.sh /path/to/joomla` copies changed files into an installed copy (`--dry-run` shows what would change)
 
 ## Changelog
-
-See [CHANGELOG.md](CHANGELOG.md) for the full version history.
+See [CHANGELOG.md](CHANGELOG.md) for release notes.
 
 ## Thanks to
-* Chris Gelauff - for Translation of fr-FR language pack.
-* Markus Wortmann - for Translation of de-DE language pack.
+* Chris Gelauff - for the translation of the fr-FR language pack.
+* Markus Wortmann - for the translation of the de-DE language pack.
