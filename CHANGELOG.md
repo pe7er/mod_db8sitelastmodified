@@ -11,6 +11,7 @@ Historical entries (4.0.1 and earlier) are sourced from the
 ## [5.1.0] - unreleased
 
 ### Changed
+- **Ready for Joomla 7.** Code that Joomla 6 marks as deprecated and Joomla 7 removes is replaced: Database queries are built with `createQuery()` instead of `getQuery(true)`.
 - Licensed under GPL v2 or later (LICENSE.txt), with the same manifest layout and file headers as the other db8 extensions. The manifest has a `<changelogurl>`, so *System → Manage → Extensions* shows a Changelog button.
 - Updates now come from extensions.db8.nl (`https://extensions.db8.nl/updates/db8sitelastmodified`) instead of the `update.xml` in this repository.
 

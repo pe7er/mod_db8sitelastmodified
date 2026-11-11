@@ -57,7 +57,7 @@ class DateHelper
             . ' OR ' . $publishDown . ' >= :publishDownNow)'
             . ' THEN ' . $publishUp . ' END) as publish_up';
 
-        $query = $db->getQuery(true)
+        $query = $db->createQuery()
             ->select('MAX(' . $db->quoteName('created') . ') as created')
             ->select('MAX(' . $db->quoteName('modified') . ') as modified')
             ->select($publishCase)
