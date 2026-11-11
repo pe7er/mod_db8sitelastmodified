@@ -15,6 +15,8 @@ namespace Db8\Module\Db8SiteLastModified\Site\Helper;
 \defined('_JEXEC') or die;
 
 use Joomla\CMS\Application\CMSApplicationInterface;
+use Joomla\CMS\Cache\CacheControllerFactoryInterface;
+use Joomla\CMS\Cache\Controller\CallbackController;
 use Joomla\CMS\Date\Date;
 use Joomla\CMS\Factory;
 use Joomla\Database\DatabaseInterface;
@@ -68,7 +70,65 @@ class DateHelper
     public function getDisplayDate(Registry $params, CMSApplicationInterface $app): ?Date
     {
         $timezone = $app->getIdentity()->getTimezone();
+        $minutes  = (int) $params->get('date_cache_minutes', 10);
 
+        // The three aggregates scan #__content (core has no index on these
+        // columns), so they are cached for a few minutes, for every visitor
+        // and regardless of the global cache setting. They don't depend on
+        // the module's settings or the visitor, so all instances share one
+        // entry; picking the date and formatting it stay per request.
+        if ($minutes > 0) {
+            /** @var CallbackController $cache */
+            $cache = Factory::getContainer()->get(CacheControllerFactoryInterface::class)
+                ->createCacheController('callback', [
+                    'defaultgroup' => 'mod_db8sitelastmodified',
+                    'caching'      => true,
+                    'lifetime'     => $minutes,
+                ]);
+
+            $result = $cache->get([$this, 'loadDates'], [], 'dates');
+        } else {
+            $result = $this->loadDates();
+        }
+
+        if (!$result) {
+            return null;
+        }
+
+        // Determine which date will be used: created, modified or the most recent.
+        $dateDisplay = (int) $params->get('datedisplay');
+
+        if ($dateDisplay === 1) {
+            $displayDate = $result['modified'];
+        } elseif ($dateDisplay === 2) {
+            $displayDate = $result['created'];
+        } elseif ($dateDisplay === 3) {
+            $displayDate = $result['publish_up'];
+        } else {
+            // Most recent of created, modified and the (already filtered) published date.
+            $dates       = array_filter([$result['modified'], $result['created'], $result['publish_up']]);
+            $displayDate = $dates ? max($dates) : null;
+        }
+
+        if (!$displayDate) {
+            return null;
+        }
+
+        // format() and toISO8601() switch back to UTC unless $local is true.
+        return Factory::getDate($displayDate, 'UTC')->setTimezone($timezone);
+    }
+
+    /**
+     * Load the latest created, modified and published dates (UTC, SQL format).
+     *
+     * Public because the cache controller calls it.
+     *
+     * @return  array{created: ?string, modified: ?string, publish_up: ?string}|null
+     *
+     * @since   5.1.0
+     */
+    public function loadDates(): ?array
+    {
         // Get max created, modified & published dates from the content table.
         $db       = Factory::getContainer()->get(DatabaseInterface::class);
         $nowDate  = Factory::getDate()->toSql();
@@ -94,32 +154,16 @@ class DateHelper
             ->bind(':nullDate', $nullDate);
         $db->setQuery($query);
 
-        $result = $db->loadObject();
+        $result = $db->loadAssoc();
 
         if (!$result) {
             return null;
         }
 
-        // Determine which date will be used: created, modified or the most recent.
-        $dateDisplay = (int) $params->get('datedisplay');
-
-        if ($dateDisplay === 1) {
-            $displayDate = $result->modified;
-        } elseif ($dateDisplay === 2) {
-            $displayDate = $result->created;
-        } elseif ($dateDisplay === 3) {
-            $displayDate = $result->publish_up;
-        } else {
-            // Most recent of created, modified and the (already filtered) published date.
-            $dates       = array_filter([$result->modified, $result->created, $result->publish_up]);
-            $displayDate = $dates ? max($dates) : null;
-        }
-
-        if (!$displayDate) {
-            return null;
-        }
-
-        // format() and toISO8601() switch back to UTC unless $local is true.
-        return Factory::getDate($displayDate, 'UTC')->setTimezone($timezone);
+        return [
+            'created'    => $result['created'] ?? null,
+            'modified'   => $result['modified'] ?? null,
+            'publish_up' => $result['publish_up'] ?? null,
+        ];
     }
 }

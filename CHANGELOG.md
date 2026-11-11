@@ -10,6 +10,9 @@ Historical entries (4.0.1 and earlier) are sourced from the
 
 ## [5.1.0] - unreleased
 
+### Added
+- **Date cache.** The latest article dates are cached for 10 minutes by default (*Advanced → Date cache (minutes)*; 0 turns it off), for every visitor and also when the site cache is off. Before, every page view with the module ran three aggregates over the whole articles table, which has no index on those dates; module caching only helped guests with the site cache on. Which date to show and its formatting stay per page view, so module instances with different settings share the one cached entry. A changed article shows up once the cache expires.
+
 ### Changed
 - **Ready for Joomla 7.** Code that Joomla 6 marks as deprecated and Joomla 7 removes is replaced: Database queries are built with `createQuery()` instead of `getQuery(true)`.
 - Licensed under GPL v2 or later (LICENSE.txt), with the same manifest layout and file headers as the other db8 extensions. The manifest has a `<changelogurl>`, so *System → Manage → Extensions* shows a Changelog button.

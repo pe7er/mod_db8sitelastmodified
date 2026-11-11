@@ -48,6 +48,8 @@
 
                 <field name="cache_time" type="number" label="COM_MODULES_FIELD_CACHE_TIME_LABEL" default="900" filter="integer" />
 
+                <field name="date_cache_minutes" type="number" label="MOD_DB8SITELASTMODIFIED_DATE_CACHE_LABEL" description="MOD_DB8SITELASTMODIFIED_DATE_CACHE_DESC" default="10" min="0" filter="integer" />
+
                 <field name="cachemode" type="hidden" default="static">
                     <option value="static" />
                 </field>
