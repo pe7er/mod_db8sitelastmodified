@@ -14,6 +14,7 @@ Historical entries (4.0.1 and earlier) are sourced from the
 - **Ready for Joomla 7.** Code that Joomla 6 marks as deprecated and Joomla 7 removes is replaced: Database queries are built with `createQuery()` instead of `getQuery(true)`.
 - Licensed under GPL v2 or later (LICENSE.txt), with the same manifest layout and file headers as the other db8 extensions. The manifest has a `<changelogurl>`, so *System → Manage → Extensions* shows a Changelog button.
 - Updates now come from extensions.db8.nl (`https://extensions.db8.nl/updates/db8sitelastmodified`) instead of the `update.xml` in this repository.
+- The default layout shows the date in a paragraph instead of a one-item list, so screen readers no longer announce "list, 1 item". The date is a `<time>` element with a machine-readable `datetime`. The `db8sitelastmodified` class stays. Template overrides get the new `$textPre`, `$dateText`, `$textPost` and `$isoDate` variables; `$formattedDate` is unchanged.
 
 ### Fixed
 - The *Article Created Date* and *Article Modified Date* options were labelled the wrong way round in English, French and Dutch: the option labelled "created" showed the modified date and vice versa. The labels now match the date they show.

@@ -12,12 +12,18 @@
 
 \defined('_JEXEC') or die;
 
+/**
+ * @var  string  $formattedDate  Prefix, date and suffix as one string.
+ * @var  string  $textPre        The "text before" option (may hold HTML).
+ * @var  string  $dateText       The formatted date.
+ * @var  string  $textPost       The "text after" option (may hold HTML).
+ * @var  string  $isoDate        The same date in ISO 8601, for the datetime attribute.
+ */
+
 if (!$formattedDate) {
     return;
 }
 ?>
-<ul class="db8sitelastmodified">
-    <li>
-        <?php echo $formattedDate; ?>
-    </li>
-</ul>
+<p class="db8sitelastmodified">
+    <?php echo $textPre; ?><time datetime="<?php echo htmlspecialchars($isoDate, ENT_QUOTES, 'UTF-8'); ?>"><?php echo $dateText; ?></time><?php echo $textPost; ?>
+</p>

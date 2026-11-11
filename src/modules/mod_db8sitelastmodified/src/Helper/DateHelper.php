@@ -15,6 +15,7 @@ namespace Db8\Module\Db8SiteLastModified\Site\Helper;
 \defined('_JEXEC') or die;
 
 use Joomla\CMS\Application\CMSApplicationInterface;
+use Joomla\CMS\Date\Date;
 use Joomla\CMS\Factory;
 use Joomla\Database\DatabaseInterface;
 use Joomla\Registry\Registry;
@@ -39,8 +40,34 @@ class DateHelper
      */
     public function getModifiedDate(Registry $params, CMSApplicationInterface $app): string
     {
-        $timezone   = $app->getIdentity()->getTimezone();
-        $dateFormat = $params->get('dateformat', 'l d-m-Y, H:i:s');
+        $date = $this->getDisplayDate($params, $app);
+
+        if ($date === null) {
+            return '';
+        }
+
+        return $params->get('text_pre')
+            . $date->format($params->get('dateformat', 'l d-m-Y, H:i:s'), true)
+            . $params->get('text_post');
+    }
+
+    /**
+     * Get the date to show, in the visitor's (or the site's) timezone.
+     *
+     * Layouts format it for display and use toISO8601(true) for the
+     * machine-readable datetime attribute.
+     *
+     * @param   Registry                 $params  Object holding the module's parameters.
+     * @param   CMSApplicationInterface  $app     The application.
+     *
+     * @return  Date|null  Null when there is no article date to show.
+     *
+     * @throws  \Exception
+     * @since   5.1.0
+     */
+    public function getDisplayDate(Registry $params, CMSApplicationInterface $app): ?Date
+    {
+        $timezone = $app->getIdentity()->getTimezone();
 
         // Get max created, modified & published dates from the content table.
         $db       = Factory::getContainer()->get(DatabaseInterface::class);
@@ -70,7 +97,7 @@ class DateHelper
         $result = $db->loadObject();
 
         if (!$result) {
-            return '';
+            return null;
         }
 
         // Determine which date will be used: created, modified or the most recent.
@@ -89,14 +116,10 @@ class DateHelper
         }
 
         if (!$displayDate) {
-            return '';
+            return null;
         }
 
-        // format() switches back to UTC unless $local is true.
-        $date = Factory::getDate($displayDate, 'UTC')
-            ->setTimezone($timezone)
-            ->format($dateFormat, true);
-
-        return $params->get('text_pre') . $date . $params->get('text_post');
+        // format() and toISO8601() switch back to UTC unless $local is true.
+        return Factory::getDate($displayDate, 'UTC')->setTimezone($timezone);
     }
 }

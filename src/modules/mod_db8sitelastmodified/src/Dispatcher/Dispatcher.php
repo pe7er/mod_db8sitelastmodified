@@ -36,11 +36,20 @@ class Dispatcher extends AbstractModuleDispatcher implements HelperFactoryAwareI
      */
     protected function getLayoutData(): array
     {
-        $data = parent::getLayoutData();
-
-        $data['formattedDate'] = $this->getHelperFactory()
+        $data   = parent::getLayoutData();
+        $params = $data['params'];
+        $date   = $this->getHelperFactory()
             ->getHelper('DateHelper')
-            ->getModifiedDate($data['params'], $this->getApplication());
+            ->getDisplayDate($params, $this->getApplication());
+
+        // The parts, for layouts that mark the date up with <time datetime>.
+        $data['textPre']  = $date ? (string) $params->get('text_pre', '') : '';
+        $data['textPost'] = $date ? (string) $params->get('text_post', '') : '';
+        $data['dateText'] = $date ? $date->format($params->get('dateformat', 'l d-m-Y, H:i:s'), true) : '';
+        $data['isoDate']  = $date ? $date->toISO8601(true) : '';
+
+        // The whole text, as before, for the plaintext layout and existing overrides.
+        $data['formattedDate'] = $date ? $data['textPre'] . $data['dateText'] . $data['textPost'] : '';
 
         return $data;
     }
